@@ -159,17 +159,38 @@ static int modem_send(lua_State *L)
     {
         case XMODEM_1K:
             tio_printf("Sending file '%s' using XMODEM-1K", file);
-            tio_printf("%s", xymodem_send(device_fd, file, XMODEM_1K) < 0 ? "Aborted" : "Done");
+            if (xymodem_send(device_fd, file, XMODEM_1K) < 0)
+            {
+                tio_printf("Aborted");
+            }
+            else
+            {
+                tio_printf("Done");
+            }
             break;
 
         case XMODEM_CRC:
             tio_printf("Sending file '%s' using XMODEM-CRC", file);
-            tio_printf("%s", xymodem_send(device_fd, file, XMODEM_CRC) < 0 ? "Aborted" : "Done");
+            if (xymodem_send(device_fd, file, XMODEM_CRC) < 0)
+            {
+                tio_printf("Aborted");
+            }
+            else
+            {
+                tio_printf("Done");
+            }
         break;
 
         case YMODEM:
             tio_printf("Sending file '%s' using YMODEM", file);
-            tio_printf("%s", xymodem_send(device_fd, file, YMODEM) < 0 ? "Aborted" : "Done");
+            if (xymodem_send(device_fd, file, YMODEM) < 0)
+            {
+                tio_printf("Aborted");
+            }
+            else
+            {
+                tio_printf("Done");
+            }
         break;
     }
 
